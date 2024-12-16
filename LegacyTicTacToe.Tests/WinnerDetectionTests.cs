@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 
 [TestFixture]
-public class WinnerDetectorTests
+public class GameTests
 {
     [Test]
     [TestCase(Field.One, Field.Two, Field.Three)]
@@ -14,7 +14,7 @@ public class WinnerDetectorTests
     [TestCase(Field.Seven, Field.Eight, Field.Nine)]
     public void DetectsWinnerForAllRowsWinningCombinationsInAnyOrder(params Field[] fields)
     {
-        Assert.That(WinnerDetector.HasWon(Shuffle(fields.ToList())), Is.True);
+        Assert.That(Game.HasWon(Shuffle(fields.ToList())), Is.True);
     }
 
     [Test]
@@ -23,7 +23,7 @@ public class WinnerDetectorTests
     [TestCase(Field.Three, Field.Six, Field.Nine)]
     public void DetectsWinnerForAllColumnsWinningCombinationsInAnyOrder(params Field[] fields)
     {
-        Assert.That(WinnerDetector.HasWon(Shuffle(fields.ToList())), Is.True);
+        Assert.That(Game.HasWon(Shuffle(fields.ToList())), Is.True);
     }
 
     [Test]
@@ -31,7 +31,7 @@ public class WinnerDetectorTests
     [TestCase(Field.Three, Field.Five, Field.Seven)]
     public void DetectsWinnerForDiagonalAndAntiDiagonalWinningCombinationsInAnyOrder(params Field[] fields)
     {
-        Assert.That(WinnerDetector.HasWon(Shuffle(fields.ToList())), Is.True);
+        Assert.That(Game.HasWon(Shuffle(fields.ToList())), Is.True);
     }
 
     [Test]
@@ -44,7 +44,7 @@ public class WinnerDetectorTests
     [TestCase(Field.Five, Field.Two, Field.Seven, Field.Six)]
     public void DoesNotDetectWinnerForNotWinningCombination(params Field[] fields)
     {
-        Assert.That(WinnerDetector.HasWon(Shuffle(fields.ToList())), Is.False);
+        Assert.That(Game.HasWon(Shuffle(fields.ToList())), Is.False);
     }
     
     private List<Field> Shuffle(List<Field> fields)
